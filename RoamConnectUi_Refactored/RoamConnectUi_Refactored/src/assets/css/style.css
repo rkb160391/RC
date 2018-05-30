@@ -1,0 +1,226 @@
+/* Box CSS */
+.heatmap-report .col-md-3{
+  width:20%;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.box-shadow {
+   box-shadow: 0px 1px 10px rgba(68, 68, 68, 0.3);
+   padding:0 25px;
+   margin-top: 15px;
+   border: 1px solid #ccc;
+}
+
+.box-shadow h4.r-title{
+  margin-top: 0;
+  margin-bottom: 15px;
+  margin-left: 0;
+  text-align: center;
+  font-weight: 600;
+  background: #eee;
+  padding: 10px;
+  margin-left: -25px;
+  margin-right: -25px;
+}
+
+.customer-card {
+    padding: 0;
+    color:#404040;
+    background-color: #fff;
+    border:1px solid #d6d6d6;
+    position: relative;
+    margin-bottom:15px;
+    /* box-shadow: 0px 1px 10px rgba(68, 68, 68, 0.2); */
+  }
+  
+  .customer-card h4{
+    padding: 15px 15px 10px 3px;
+    font-size:15px;
+    font-weight:600;
+    position: relative;
+  
+    text-align:center;
+    
+  }
+  
+  .customer-card ul.card-item{
+    list-style:none;
+    padding:10px 15px 15px;
+    text-align:center;
+  }
+  
+  .customer-card ul.card-item li{
+      padding: 6px 10px;
+      background: #eee;
+      text-align: center;
+      font-size: 13px;
+      width: 45%;
+      margin: 5px 3%;
+    display:inline-table;
+    border-radius:10px;
+  }
+  
+  ul.card-item li.danger{
+    background:#d9534f;
+    color:#fff;
+  }
+  
+  ul.card-item li.warning{
+    background:#ec971f;
+    color:#fff;
+  }
+  
+  ul.card-item li.success{
+    min-height: 63px;
+    text-align: center;
+    background:#449d44;
+    color:#fff;
+  }
+  
+  .customer-card ul.card-item li:nth-child(2){
+    margin-right:0;
+  }
+  
+  .customer-card ul.card-item li:first-child{
+    margin-left:0;
+  }
+  
+  .customer-card ul.card-item li:last-child{
+    margin-bottom:0;
+  }
+
+  
+.table-data {
+  height: 400px;
+  background-color: #fff;
+  padding: 5px 10px 0;
+}
+
+/* Added for spinner */
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    /* Firefox 16+*/ }
+  100% {
+    -moz-transform: rotate(360deg);
+    /* Firefox 16+*/ } }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    /* Firefox 16+, IE 10+, Opera */ }
+  100% {
+    transform: rotate(360deg);
+    /* Firefox 16+, IE 10+, Opera */ } }
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1003;
+  background: #6d487c;
+  opacity : 0.5;
+  }
+  #preloader > div {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top-color: #f95372;
+    transform: translate3d(0, 0, 0);
+    animation: spin 2s linear infinite;
+    /* Chrome, Firefox 16+, IE 10+, Opera */ }
+    #preloader > div:before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      border-top-color: #00abff;
+      -webkit-animation: spin 3s linear infinite;
+      /* Chrome, Opera 15+, Safari 5+ */
+      animation: spin 3s linear infinite;
+      /* Chrome, Firefox 16+, IE 10+, Opera */ }
+    #preloader > div:after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      border-top-color: #e7ba08;
+      animation: spin 1.5s linear infinite;
+      /* Chrome, Firefox 16+, IE 10+, Opera */
+     }
+/* Added for spinner */
+
+
+#errorLoader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1003;
+  background: #6d487c;
+  opacity : 0.5;
+  text-align : center;
+  font-weight :bold;
+  color:#fff;
+  }
+  #errorLoader > div {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top-color: #f95372;
+
+    /* Chrome, Firefox 16+, IE 10+, Opera */ }
+    #errorLoader > div:before {
+
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+
+
+      /* Chrome, Firefox 16+, IE 10+, Opera */ }
+    #errorLoader > div:after {
+
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+
+
+      /* Chrome, Firefox 16+, IE 10+, Opera */
+     }
+     
+     .goButton{
+      margin-left: 800%;
+      margin-top: -7px;
+     }
+
+     .grayText{
+      color: #9e9d9d;
+     } 

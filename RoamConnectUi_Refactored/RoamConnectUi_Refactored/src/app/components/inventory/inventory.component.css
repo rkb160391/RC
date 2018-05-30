@@ -1,0 +1,46 @@
+.header {
+	background: #666;
+	height: 60px;
+}
+
+/* Brows Button Style */
+
+.btn-bs-file{
+    position:relative;
+}
+.btn-bs-file input[type="file"]{
+    position: absolute;
+    top: -9999999;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    width:0;
+    height:0;
+    outline: none;
+    cursor: inherit;
+}
+
+.upload-file {
+	margin:40px auto;
+	width: 500px;
+	box-shadow: 0 1px 6px #ccc;
+	padding:20px 30px;
+	border-radius: 3px;
+}
+#myProgress {
+    width: 100%;
+    background-color: #ddd;
+  }
+  
+  #myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #4CAF50;
+  }
+
+  #mySidenav
+  {
+      color:#7d6991 !important;
+  }
+
+
+

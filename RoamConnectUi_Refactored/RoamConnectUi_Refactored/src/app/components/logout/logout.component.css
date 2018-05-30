@@ -1,0 +1,10 @@
+.well
+{
+    position: fixed !important; /* or absolute */
+    top: 45% !important;
+    left: 45% !important;
+    background: #7d6991 !important;
+    color: white !important;
+    
+
+}

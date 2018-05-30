@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: 'BT Font Regular';
+    src: url('assets/font/BTFont_Rg.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BT Font Light';
+    src: url('assets/font/BTFont_Lt.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BT Font Bold';
+    src: url('assets/font/BTFont_Bd.ttf') format('truetype');
+}
+
+.panel-default {
+    border-color: #DDDDDD !important;
+}
+
+.panel-default > .panel-heading {
+    padding: 15px 20px !important;
+    height: 61px !important;
+    background-color: #DDDDDD !important;
+    border-color: #DDDDDD !important;
+}
+
+.title {
+    font-family: "BT Font Regular", sans-serif;
+    font-size: 20px;
+    color: #666666;
+}
+
+.panel-body {
+    padding: 10px 20px 20px 20px !important;
+}
+
+.panel {
+    border-radius: 5px !important;
+}

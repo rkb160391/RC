@@ -1,0 +1,73 @@
+<div class="container" style="width:100%;margin-top:10px;">
+  
+<div >
+  
+
+
+<nav class="navbar navbar-default" style = "background:#7d6991" *ngIf="operatorName!=null">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" >
+     
+    <a class="navbar-brand" style = "color:white"> Roam Connect Reports </a>
+  </div>
+     
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a (click)="getDashboards();" style = "color:white">Home</a></li>
+        <li class="dropdown">
+          <a href="#" style = "color:white" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+             aria-haspopup="true" aria-expanded="false"><i class="fa fa-home" aria-hidden="true"></i>
+             Welcome, {{operatorName}} <span class="caret"></span></a>
+          <ul class="dropdown-menu" >
+            <!-- <li *ngIf="isBTUser"><a (click)="adminClick();"><i class="fa fa-user-o" aria-hidden="true"></i> Admin Portal</a></li> -->
+            <!-- <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i> Switch User</a></li> -->
+           
+           <li><a href="#" data-toggle="modal" data-target="#myModal">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a> </li>
+             
+          </ul>         
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</div>
+  <br>
+  <div  *ngFor="let dashboard of dashboards">
+  <div class="col-sm-6 panel-group">
+    <div class="panel panel-default">
+      <div class="text-center panel-heading" style = "background:#7d6991 !important; 
+        color: white !important">{{dashboard.name}}</div>
+      <div class="panel-body">
+        <div class="list-group">
+          <div *ngFor="let report of dashboard.config">
+            <a (click)="getReport(report,dashboard)"  class="text-center list-group-item">{{report.reportname}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Do you want to logout?</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="btn_yes" (click)="loadLogout();" >Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            
+          </div>
+        </div>
+      </div> 
+    </div> 
+
+  </div>

@@ -1,0 +1,185 @@
+<div>
+      <nav class="navbar navbar-default"  style = "background:#7d6991;margin-left:12px;margin-right:12px;margin-top:12px;"   >
+        <div class="container-fluid">
+            <div class="navbar-header" >
+                
+               <a class="navbar-brand" style = "color:white"> Roam Connect Reports </a>
+             </div>
+              
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li><a (click)="getDashboards();"style = "color:white">Home</a></li>
+                        <li class="dropdown">
+                        <a href="#" style = "color:white" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                           aria-haspopup="true" aria-expanded="false"><i class="fa fa-home" aria-hidden="true"></i>
+                           Welcome, {{operatorName}} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" >
+                          <li *ngIf="isBTUser"><a (click)="adminClick();"><i class="fa fa-user-o" aria-hidden="true"></i> Admin Portal</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#" data-toggle="modal" data-target="#myModal">
+                          <i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a> </li>
+                        </ul>
+                      </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+
+<div class="container">
+  <div class="row">
+        <div class="col-sm-3" >
+             <div id="mySidenav" style="width:45%; margin-left: -82px;" >
+                  <a class="nav-tabs-dropdown btn btn-block btn-primary"  style=" background:#7d6991;
+                  border-color:#7d6991;" id="btn_well">Reports</a>
+                     <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked wells" >
+                        <li class="active-page">
+                            <div class="list-group">
+                                 <div *ngFor="let report of dashboard.config" >
+                                    <a (click)="getReport_nav(report,dashboard)"
+                                    class="text-center list-group-item">{{report.reportname}}
+                                    </a>
+                                 </div>
+                            </div>
+                     </li>
+                 </ul>
+          </div>
+        </div>
+
+
+
+        <div class="col-sm-9" style= "margin-left: -229px;margin-top: -11px;">
+
+
+            <div class="container">
+                <div class="row">
+
+                  <div class="col-md-8">
+
+                  </div>
+
+
+                      <div class="col-md-2" >
+                        <div class="context-menu pull-right">
+                            <form  *ngIf = "true" class="form-inline" style="width:100%; margin-top:-3%; margin-left: 92%;">
+                                <div class="form-group"style="width:100%">
+                                    <div class='input-group date' >
+                                      <label> Date </label> 
+                                      <input id="date" type='text' value='' class="form-control" data-position="bottom right" data-language='en' name="selectedDate" />
+                                      
+                                    </div>
+                                </div>
+                            </form>
+                          </div>
+                        </div>
+                             
+                        <div class="col-md-2">
+                            <div     style="margin-left: 80%;">
+                                <button type="button" style=" background:#7d6991;
+                                border-color:#7d6991; margin-top: 20px;" class="btn btn-info" (click)="getHeatMap();" >Go</button>
+                           </div>
+                        </div>                         
+                      
+                 </div>
+
+<div class="row" *ngIf="dataArrayRes.length >0" style=" margin-left: -7%;margin-right: -2%;">
+  <div class="col-md-12">
+
+    <div class="box-shadow">
+       <h4 class="r-title">{{reportData.response.reportConfiguration.configuration.name}}</h4>       
+    <br>
+      <div class="row heatmap-report">
+        <div class="col-md-3" *ngFor="let data of dataArray" style="width: 20%;width: 20%;padding-left: 0px;padding-right: 2px;">
+          <div class="customer-card">
+            <h4 class="panel-title">{{data.operatorName}}</h4>
+            <ul class="card-item">
+              <li *ngFor="let metric of metrics" title={{metric.displayName}} [ngClass]="getClass(data.data[metric.refrenceField])" >
+                {{data.data[metric.refrenceField]}}
+              </li>
+              <!-- <li class="success">Outbound <br/> MSU</li>
+             <li class="warning">Total <br/> MSU</li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+<div class="row" *ngIf="errorDataArrayRes.length >0" style=" margin-left: -7%;margin-right: -2%;">
+  <div class="col-md-12">
+
+    <div class="box-shadow">
+      <h4 class="r-title">{{errorReportData.response.reportConfiguration.configuration.name}}</h4>  
+    <br>
+      <div class="row heatmap-report1">
+        <div class="col-md-3" *ngFor="let data1 of errorDataArray" style="width: 20%;width: 20%;padding-left: 0px;padding-right: 2px;">
+          <div class="customer-card">
+            <h4 class="panel-title">{{data1.operatorName}}</h4>
+            <ul class="card-item">
+              <li *ngFor="let metric1 of errorMetrics" title={{metric1.displayName}} [ngClass]="getClass(data1.data[metric1.refrenceField])" style="width: 40%;">
+                {{data1.data[metric1.refrenceField]}}
+              </li>
+              <!-- <li class="success">Outbound <br/> MSU</li>
+             <li class="warning">Total <br/> MSU</li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row" *ngIf="successDataArrayRes.length >0" style=" margin-left: -7%;margin-right: -2%;" >
+  <div class="col-md-12">
+
+
+    <div class="box-shadow">
+       <h4 class="r-title">{{successReportData.response.reportConfiguration.configuration.name}}</h4>    
+    <br>
+      <div class="row heatmap-report2">
+        <div class="col-md-3" *ngFor="let data2 of successDataArray" style="width: 20%;width: 20%;padding-left: 0px;padding-right: 2px;">
+          <div class="customer-card">
+            <h4 class="panel-title">{{data2.operatorName}}</h4>
+            <ul class="card-item">
+              <li *ngFor="let metric2 of successMetrics" title={{metric2.displayName}} [ngClass]="getClass(data2.data[metric2.refrenceField])">
+                {{data2.data[metric2.refrenceField]}}
+              </li>
+              <!-- <li class="success">Outbound <br/> MSU</li>
+             <li class="warning">Total <br/> MSU</li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Do you want to logout?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="btn_yes" (click)="loadLogout();" >Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        
+      </div>
+    </div>
+  </div> 
+</div> 
+
+
+
+</div>
+
+  

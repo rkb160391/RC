@@ -1,0 +1,26 @@
+<div>
+  <div class="chart-item" [ngClass]="{'container-shadow' : !showfullScreen}">
+    <div class="dashboard-top-icon">
+      <a class="toggleNavbar" *ngIf="!showfullScreen" class="icon-16 full-screen" data-toggle="modal" data-target="#myModalPie" readonly><span></span></a>
+      <div class="toggle-view">
+       <a [ngClass]="{'active' : toggleGraphView}" (click)="toggleGraphView = !toggleGraphView"><span class="table-view"></span></a>
+       <a [ngClass]="{'active' : !toggleGraphView}" (click)="toggleGraphView = !toggleGraphView" class="active"><span class="graph-view"></span></a>
+      </div>
+    </div>
+    <div #chart></div>
+      <!-- <app-data-table [hidden] = "!toggleGraphView" [toggleTableView] = "toggleGraphView" [ERROR ->][reportdata] = "pieCharts"></app-data-table> -->
+      <!-- <app-data-table [hidden] = "!toggleGraphView" [reportdata] = "pieCharts"></app-data-table> -->
+    </div> 
+</div>
+
+<div class="modal fade" id="myModalPie" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <div #largechart class="lg-chart"></div>
+
+      </div>
+    </div>
+  </div>
+</div>

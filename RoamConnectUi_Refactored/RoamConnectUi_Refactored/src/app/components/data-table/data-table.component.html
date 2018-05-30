@@ -1,0 +1,94 @@
+<div class="container">
+        
+          <div class="row">
+              <div class="col-sm-12">
+                <ol class="breadcrumb">
+                    <li><a (click)="getDashboards()">Dashboard</a></li>
+                    <li *ngFor="let report of ReprtNames"><a (click)="getReport(report.request)"> {{ report.name}} </a></li>
+                </ol>
+              </div>
+          </div>
+        
+          <div class="row">
+              <div class="col-md-3">
+                <div class="context-menu pull-right">
+                    <form  *ngIf = "true" class="form-inline" style="width:100%; margin-top:-1%;">
+                        <div class="form-group"style="width:100%">
+                              <label for="date" class="date-label"> Date </label>
+                              <input id="date" type='text' value='' class="form-control" [(ngModel)]="selectedDate"  data-position="bottom right" data-language='en' name="selectedDate" />
+                        </div>
+                    </form>
+                  </div>
+                </div>
+        
+                <div class="col=md-3">
+                   <div class="form-group pull-right" style="margin-right: 70px;">
+                        <input type="checkbox" name="status" [(ngModel)]="status" (ngModelChange)="getFullDayValue($event)" [checked]="isCheckedFullDay" />
+                        <label for="business"> Full Day </label>
+                    </div>
+                 </div>
+        
+                 <div class="col-md-3">
+                   <div class="form-group pull-right" [ngClass]="{'grayText' : isCheckedFullDay}" style="margin-right: -165%;">
+                        <label for="business"> Hour </label>
+                             <select [(ngModel)]="hourValue" #hour  [disabled]="isCheckedFullDay"> // value is a string or number
+                                 <option *ngFor="let hour of hours" [value]="hour">{{hour}} </option>
+                             </select>
+        
+                        <label for="business"> Minute </label>
+                        <select [(ngModel)]="minuteValue" #minute  [disabled]="isCheckedFullDay"> // value is a string or number
+                           <option *ngFor="let minute of minutes" [value]="minute">{{minute}} </option>
+                        </select>
+                   </div>
+                 </div>
+        
+                 <div class="col-sm-3" >
+                       <div class="form-group pull-right" style="margin-right: 25%;">
+                             <button type="button" class="btn btn-primary goButton" (click)="this.getUpdatedData()">Go</button>
+                        </div>
+                </div>
+          </div>
+        
+            <div class="row" style="margin-top: 10px;" *ngIf="displayTable">
+              <div class="table-data" style="max-height:450px;overflow-y:auto;">
+                  <table id="data1" class="table-responsive table table-bordered" cellspacing="0">
+                    <thead>
+                        <tr *ngIf="displayMainHeaders">
+                            <th *ngFor="let mainheader of mainHeaderArray" [attr.colspan]="mainheader.subHeaders.length">
+                                <label *ngIf="mainheader.subHeaders.length >1">  {{mainheader.displayName}} </label>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th *ngFor="let column of columnsArray">{{column.displayName}}</th>
+                        </tr>
+                    </thead>
+        
+                    <tbody> 
+                            <tr *ngFor="let data of dataArray; let i = index"> 
+                            <td *ngFor="let header of columnsArray; let i = index;"> 
+                            <span *ngIf="header.link" style="cursor: pointer;"><a (click)="getfilteredReport(data[header.name],header,data)"> {{data[header.name]}}</a></span> 
+                            
+                            <span *ngIf="!header.link"> {{data[header.name]}}</span> 
+                            </td> 
+                            </tr> 
+                            </tbody> 
+              </table>
+            </div>
+          </div>
+        <div class="row">
+            <div *ngIf="displayLineGraph">
+                    <app-linechart [reportData]="reportdata"></app-linechart>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngIf="displayPieChart">
+                    <!-- <app-pie-chart [reportData]="reportdata"></app-pie-chart> -->
+                    <app-pie-chart *ngIf="reportSubType=='pie'" [pieCharts]="reportdata" [showfullScreen] = true ></app-pie-chart>
+            </div>
+            <!-- <div class="col-sm-6" *ngIf="displayPieChart">
+                 <app-pie-chart [reportData]="reportdata"></app-pie-chart> 
+                <app-pie-chart *ngIf="reportSubType=='pie'" [pieCharts]="reportdata" [showfullScreen] = false ></app-pie-chart>
+           </div> -->
+        </div>
+
+      </div>

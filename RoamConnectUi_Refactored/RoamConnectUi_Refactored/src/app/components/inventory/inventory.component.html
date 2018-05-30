@@ -1,0 +1,137 @@
+<div>
+    <nav class="navbar navbar-default" style = "background:#7d6991;margin-left: 13px;margin-top: 13px;
+    margin-right: 13px;">
+        <div class="container-fluid">
+                <div class="navbar-header" >
+                                                     
+                    <a class="navbar-brand" style = "color:white"> Roam Connect Reports </a>
+                </div>
+              
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a (click)="getDashboards();" style = "color:white">Home</a></li>
+                        <li class="dropdown">
+                        <a href="#" style = "color:white" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+                           aria-haspopup="true" aria-expanded="false"><i class="fa fa-home" aria-hidden="true"></i>
+                          Welcome, {{operatorName}}  <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" >
+                          
+                         
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#" data-toggle="modal" data-target="#myModal">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a> </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+
+
+<div class="row">
+
+    <div class="col-sm-12" >
+
+            <div class="col-sm-3" >
+                    <div id="mySidenav" style="width:40%; margin-left:14px;" >
+                            <a class="nav-tabs-dropdown btn btn-block btn-primary" id="btn_well" style="background:#7d6991; border-color:#7d6991;">Reports</a>
+                                 <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked wells" >
+                                     <li class="active-page">
+                                            <div class="list-group">
+                                                 <div *ngFor="let report of dashboard.config" >
+                                                    <a (click)="getReport_nav(report,dashboard)"
+                                                    class="text-center list-group-item">{{report.reportname}}
+                                                    </a>
+                                                 </div>
+                                            </div>
+                                     </li>
+                                 </ul>
+                    </div>
+                </div> 
+
+
+
+<div id="wraper">
+   <div class="page-content">
+    
+   
+    <section class="main-content">
+    <div class="container text-center">
+
+   <!-- Step 1 -->
+	  <!--<div class="upload-file">
+		<h2 class="text-center">Please put your appropriate heading here</h2>
+       
+        <div style="margin:30px 0;">
+            <label class="btn-bs-file btn btn-lg btn-primary">
+                Browse File
+                <input type="file" />
+            </label>
+		</div>
+	</div> -->
+   <!-- Step 2 -->
+   	<div class="upload-file">
+		<h2 class="text-center">Global Titles Code Inventory</h2>
+       
+        <div style="margin:30px 0;">
+            <label class="btn-bs-file btn btn-lg btn-primary">
+                Browse File
+                <input type="file" id="fileInput" class="form-control" name="uploadFile" (change)="fileChange($event)">
+            </label>
+            
+            
+          <button type="button"  class="btn btn-lg btn-success" (click)="uploadFile()">Upload</button>
+
+        </div>
+        
+        <div class="progress" id="myProgress">
+                        <div class="bar" id="myBar"></div >
+                        <div class="percent">0%</div >
+        </div>
+
+        <div>
+            <label id="labelFile">
+            </label>
+        </div>
+	</div>
+	
+	<!-- Step 3 -->
+   	<div class="upload-file alert alert-success fade in alert-dismissable">
+		<strong *ngIf="isSuccess"> File Upload : {{data}}!</strong>
+	</div>
+  
+  
+   
+    </div>
+ </section>    
+ </div>
+</div>
+</div>
+
+ <!-- Modal -->
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Do you want to logout?</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="btn_yes" (click)="loadLogout();" >Yes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          
+        </div>
+      </div>
+    </div> 
+  </div> 
+
+</div>
+<!-- /#wrapper --> 
+
+
+
+
+

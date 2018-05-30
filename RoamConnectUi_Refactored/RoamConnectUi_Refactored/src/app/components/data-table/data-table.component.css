@@ -1,0 +1,28 @@
+.detail-btn {
+  border: 1px solid #6400AA;
+  color: #6400AA;
+  background-color: white;
+  font-family: "BT Font Regular", sans-serif;
+  outline: none;
+}
+
+.detail-btn:hover {
+  background-color: #6400AA;
+  color: white;
+}
+
+.detail-btn:active
+ {
+  background-color: rgb(54, 46, 59);
+  color: white;
+}
+
+.btn-primary{
+    background:#7d6991;
+    border-color:#7d6991;
+}
+
+.breadcrumb>li>a 
+{
+  color:#7d6991;
+}
